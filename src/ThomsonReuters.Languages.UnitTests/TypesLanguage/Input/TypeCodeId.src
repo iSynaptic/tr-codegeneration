@@ -1,0 +1,9 @@
+﻿namespace ThomsonReuters
+{
+     value TypeCodeId
+     {
+        string Type;
+        string Code;
+
+     } equal by (Type, Code);
+}

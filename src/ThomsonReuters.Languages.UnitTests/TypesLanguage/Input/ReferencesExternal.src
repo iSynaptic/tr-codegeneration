@@ -1,0 +1,10 @@
+﻿namespace ThomsonReuters
+{
+    value ReferencesExternal
+    {
+        System.Guid Id;
+        System.Int32 Number;
+        System.String Text;
+        System.DateTime When;
+    }
+}

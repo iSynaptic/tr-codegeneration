@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC8CC244-DAF0-4CDB-AB39-BF259CBACF83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ThomsonReuters.Languages</RootNamespace>
+    <AssemblyName>ThomsonReuters.Languages.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="iSynaptic.Commons, Version=0.4.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\iSynaptic.Commons.0.4.8\lib\iSynaptic.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="MetaSharp.Transformation, Version=0.4.0.149, Culture=neutral, PublicKeyToken=69061f07610482b9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\MetaSharp\MetaSharp.Transformation.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\lib\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IdentifierTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualifiedIdentifierTests.cs" />
+    <Compile Include="SagaLanguage\CompilerTests.cs" />
+    <Compile Include="TypesLanguage\DelegateVisitorTests.cs" />
+    <Compile Include="TypesLanguage\TestInputTests.cs" />
+    <Compile Include="TypesLanguage\ValidationTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TypesLanguage\Input\TypeCodeId.src" />
+    <EmbeddedResource Include="TypesLanguage\Input\ReferencesExternal.src" />
+    <EmbeddedResource Include="TypesLanguage\Input\Sample.src" />
+    <EmbeddedResource Include="TypesLanguage\Input\SupportIssue.src" />
+    <EmbeddedResource Include="TypesLanguage\Input\CustomerSupportApi.src" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="TypesLanguage\Input\BaseMessage.src" />
+    <EmbeddedResource Include="SagaLanguage\Input\ExtractionDef.saga" />
+    <None Include="SagaLanguage\Input\AlternateSyntax.saga" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThomsonReuters.CodeGeneration\ThomsonReuters.CodeGeneration.csproj">
+      <Project>{D6A0456B-7629-4A4F-A497-F5031C68C4F2}</Project>
+      <Name>ThomsonReuters.CodeGeneration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThomsonReuters.Languages\ThomsonReuters.Languages.csproj">
+      <Project>{1373BB97-C55B-4DE3-ADC2-C6308B63242E}</Project>
+      <Name>ThomsonReuters.Languages</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

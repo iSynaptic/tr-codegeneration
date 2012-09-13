@@ -1,0 +1,24 @@
+﻿namespace ThomsonReuters
+{
+	[SampleAnnotation]
+    value Sample : BaseMessage
+    {
+		guid SampleMessageId
+			aliases MessageId;
+
+		[JustOneIntAnnotation]
+        int         JustOneInt;
+        int?        ZeroOrOneInts;
+        int*        ZeroOrMoreInts;
+        int+        OneOrMoreInts;
+        int[10..*]  TenOrMoreInts;
+        int[5..10]  FiveToTenInts;
+
+        string         JustOneString;
+        string?        ZeroOrOneStrings;
+        string*        ZeroOrMoreStrings;
+        string+        OneOrMoreStrings;
+        string[10..*]  TenOrMoreStrings;
+        string[5..10]  FiveToTenStrings;
+    }
+}

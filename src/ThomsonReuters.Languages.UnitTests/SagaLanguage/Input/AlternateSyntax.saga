@@ -1,0 +1,73 @@
+﻿import namespace ns1.ns2;
+import namespace ns3.ns4;
+
+namespace ns5
+{
+	saga ExtractionDef
+	{
+		projection ExtractionDefSummary;
+
+		state MostMinimalState;
+
+		state RequirementsOnly
+		{
+			on entry require A,B;
+		}
+
+		state MessageOnly
+		{
+			accept __A;
+		}
+
+		state RequirementsAndMessage
+		{
+			on entry require A;
+			accept __A;
+		}
+
+		initial state Initial;
+
+		final state Final;
+
+		state Messages
+		{
+			accept MessageWithRequirementsOnly {
+				require A;
+			}
+
+			accept MessageWithGotoOnly {
+				goto Final;
+			}
+
+			accept MessageWithRequirementsAndGoto {
+				require A;
+				goto Final;
+			}
+
+			accept MessageWithChoicesAndGotoDefault {
+				when "ChoiceWithRequirementsOnly"
+					require A;
+				when "ChoiceWithGotoOnly"
+					goto Final;
+				when "ChoiceWithRequirementsAndGotoOnly" {
+					require A;
+					goto Final;
+				}
+				otherwise
+					goto Final;
+			}
+
+			accept MessageWithRequirementsDefault {
+				when "A"
+					require A;
+				otherwise
+					require B;
+			}
+
+			accept MessageWithRequirementsAndGotoDefault {
+				when "A" require A;
+				otherwise { require A; goto Final; }
+			}
+		}
+	}
+}

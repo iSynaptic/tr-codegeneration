@@ -1,0 +1,57 @@
+﻿in namespace ns5
+
+import namespace ns1.ns2
+import namespace ns3.ns4
+
+saga ExtractionDef
+
+	state MostMinimalState
+
+	state RequirementsOnly
+		requires send(A), send(B)
+
+	state MessageOnly
+		receives __A
+
+	state RequirementsAndMessage
+		requires send(A)
+		receives __A
+
+	initial state Initial
+
+	final state Final
+
+	state Messages
+
+		receives MessageWithRequirementsOnly
+			requires send(A)
+
+		receives MessageWithGotoOnly
+			-> Final
+
+		receives MessageWithRequirementsAndGoto
+			requires send(A) -> Final
+
+		receives MessageWithChoicesAndGotoDefault
+			when "ChoiceWithRequirementsOnly"
+				requires send(A)
+			when "ChoiceWithGotoOnly"
+				-> Final
+			when "ChoiceWithRequirementsAndGotoOnly"
+				requires send(A)
+				-> Final
+			otherwise
+				-> Final
+
+		receives MessageWithRequirementsDefault
+			when "A"
+				requires send(A)
+			otherwise
+				requires send(B)
+
+		receives MessageWithRequirementsAndGotoDefault
+			when "A"
+				requires send(A)
+			otherwise
+				requires send(B)
+				-> Final

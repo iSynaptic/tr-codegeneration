@@ -1,0 +1,36 @@
+﻿namespace ThomsonReuters
+{
+	extern enum SupportIssueStatus;
+
+	[ApiAnnotation]
+    webapi CustomerSupportApi
+    {
+		[PathAnnotation]
+        path SupportIssues
+        {
+			[PathAnnotation]
+            path SupportIssueSummary* Summaries
+                filters(int? companyId, [ArgumentAnnotation] int? userId, SupportIssueStatus? status)
+            {
+				[QueryAnnotation]
+                query SupportIssueSummary* Active();
+                query SupportIssueSummary* Evaluated()
+                    filters(string? referenceNumber, string? companyName, datetime? closedDate);
+            }
+
+            path Detail
+            {
+                query SupportIssueDetail? Id(string referenceNumber);
+
+				[DeleteAnnotation]
+                command void Delete(string referenceNumber);
+            }
+        }
+    }
+
+	value ComplexMessage
+	{
+		string Message;
+		string DiagnosticMessage;
+	}
+}

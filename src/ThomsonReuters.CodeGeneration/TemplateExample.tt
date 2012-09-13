@@ -1,0 +1,24 @@
+﻿<#@ template debug="true" hostspecific="false" #>
+<#@ output extension=".generated.cs" #>
+
+<#@ Assembly Name="System.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\lib\iSynaptic.Commons.0.4.8\lib\iSynaptic.Commons.dll" #>
+
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="iSynaptic.Commons" #>
+<#@ Import Namespace="iSynaptic.Commons.Linq" #>
+
+<# GenerationEnvironment.Remove(0, GenerationEnvironment.Length); #>
+<#
+	var model = DescriptionProvider.GetDescription();
+	if(model.WasSuccessful && model.HasValue)
+	{
+		var valuesCodeGenerator = new ValuesCodeGenerator(GenerationEnvironment);
+		valuesCodeGenerator.Visit(model.Value);
+	}
+	else
+	{
+		foreach(var observation in model.Observations)
+			Error(observation);
+	}
+#>

@@ -1,0 +1,7 @@
+﻿namespace ThomsonReuters
+{
+    abstract value BaseMessage
+    {
+        guid MessageId;
+    }
+}

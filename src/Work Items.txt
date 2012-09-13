@@ -1,0 +1,23 @@
+================================================================================
+Types Language
+================================================================================
+
+* Make sure all visitors can visit all leaf nodes
+* Clean up ISymbol interface, with Parent property
+* Molecules should support nested value type definitions
+* Add support for equals by to values (change semantic model EqualsBy to return AtomSymbols, not strings)
+* Add support for default values
+* Add support for simple expressions
+* Add molecule atom where clauses
+* Add molecule atom aliases
+* Add simple values
+* Add simple enums
+* Add complex enums
+* Web api query should support mutually exclusive/inclusive filters
+* Commands should only allow scalar return values (prevent abusive use as a query in "command" clothing)
+* Check validation visitor for completeness
+* Add unit tests for all features
+* Add unit tests for all validation rules
+* Complete build system
+* Added line/column info to syntax tree
+* Add detection of ambiguous references in the presence of multiple using statements

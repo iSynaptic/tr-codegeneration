@@ -1,0 +1,46 @@
+﻿namespace ThomsonReuters
+{
+	extern value UserSummary;
+	extern value SubmissionInfo;
+	extern value SubmisstionOutcome;
+	extern value SupportIssueSummary;
+	extern value SupportIssueDetail;
+
+	[CustomerSupportAnnotation]
+	entity<guid> SupportIssue
+	{
+		abstract event Base
+		{
+			UserSummary CausedBy;
+		}
+		
+		[SubmittedAnnotation]
+		event Sumbitted : Base
+		{
+			SubmissionInfo BasicInfo;
+		}
+
+		event Resolved : Base
+		{
+			UserSummary Evaluator;
+			SubmisstionOutcome Outcome;
+			string Comment;
+		}
+
+		event Unassigned : Base
+		{
+			UserSummary Assigner;
+		}
+
+		event Assigned : Base
+		{
+			UserSummary Assigner;
+			string AssignedTo;
+		}
+
+		event Deleted : Base
+		{
+			UserSummary Deleter;
+		}
+	}
+}
